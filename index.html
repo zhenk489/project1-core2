@@ -1,0 +1,1771 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title></title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.font.im/css2?family=Oi&family=Rubik+Beastly&family=Rubik+Doodle+Shadow&display=swap"
+			rel="stylesheet">
+		<link
+			href="https://fonts.googleapis.com/css2?family=Rubik+Beastly&family=Rubik+Doodle+Shadow&family=Rubik+Doodle+Triangles&family=Rubik+Microbe&family=Rubik+Puddles&family=Rubik+Scribble&display=swap"
+			rel="stylesheet">
+
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			html,
+			body {
+				color: rgb(255, 219, 211);
+				font-family: Oi;
+				overflow: hidden;
+			}
+
+			.container {
+				text-align: center;
+				position: relative;
+				height: 100vh;
+			}
+
+			#page1 {
+				top: 0;
+				position: absolute;
+				width: 100%;
+				z-index: 1;
+				/* display: none; */
+			}
+
+			.page1 {
+				background-color: rgb(214, 79, 67);
+				height: 100vh;
+
+			}
+
+			.page1-1,
+			.page1-2,
+			.page2-1,
+			.page2-2,
+			.page2-3,
+			.page2-4,
+			.page2-5,
+			.page2-6,
+			.page3-1,
+			.page3-2,
+			.page3-3,
+			.page3-4,
+			.page4-1,
+			.page4-2,
+			.page4-3,
+			.page4-4,
+			.page5-1,
+			.page5-2,
+			.page5-3,
+			.page5-4,
+			.page6-1,
+			.page6-2,
+			.page6-3,
+			.page6-4,
+			.page7-1,
+			.page7-2,
+			.page7-3,
+			.page7-4 {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-direction: column;
+				height: 100vh;
+				scroll-snap-align: center;
+			}
+
+			.page1-1 p {
+				font-size: 90px;
+				line-height: 120px;
+			}
+
+			.page1-2 p {
+				font-size: 64px;
+				line-height: 90px;
+			}
+
+			.btn {
+				width: 200px;
+				border-radius: 50px;
+				background-color: rgb(255, 219, 211);
+				color: rgb(214, 79, 67);
+				cursor: pointer;
+				line-height: 50px;
+				margin: 0 auto;
+				margin-top: 80px;
+				border: 2px solid transparent;
+				padding: 6px 16px;
+				font-size: 18px;
+				transition: padding 0.3s ease;
+			}
+
+			.btn:hover,
+			.btn1:hover {
+				background-color: transparent;
+				color: #fff;
+				border-color: #fff;
+			}
+
+			.btn:hover {
+				padding-left: 30px;
+				padding-right: 30px;
+			}
+
+			.page2 {
+				background-color: #A6BADE;
+				height: auto;
+				color: #FFED35;
+				font-size: 55px;
+				display: none;
+				position: relative;
+				transition: opacity 0.6s ease-in-out;
+			}
+
+			.page2 img {
+				position: absolute;
+				top: 2%;
+				left: 2%;
+				margin: 0;
+				width: 100px;
+				transform: rotateY(180deg);
+				cursor: pointer;
+			}
+
+
+
+			.animate__animated {
+				animation-duration: 1s;
+				animation-fill-mode: both;
+			}
+
+			@keyframes fadeInUp {
+				from {
+					opacity: 0;
+					transform: translate3d(0, 100%, 0);
+				}
+
+				to {
+					opacity: 1;
+					transform: translate3d(0, 0, 0);
+				}
+			}
+
+			.animate__fadeInUp {
+				animation-name: fadeInUp;
+			}
+
+			.animate__animated.animate__delay-1s {
+				animation-delay: 1.5s;
+			}
+
+			.animate__animated.animate__delay-2s {
+				animation-delay: 2.5s;
+			}
+
+			.animate__animated.animate__delay-3s {
+				animation-delay: 3.5s;
+			}
+
+			.animate__animated.animate__delay-4s {
+				animation-delay: 5s;
+			}
+
+			.hidden {
+				display: none;
+			}
+
+			.visible {
+				display: flex;
+			}
+
+			.font2 {
+				font-family: 'Rubik Beastly';
+				font-size: 74px;
+				position: relative;
+			}
+
+			.font3 {
+				font-family: 'Rubik Doodle Shadow';
+				font-size: 80px;
+				position: relative;
+			}
+
+			.font4 {
+				font-family: 'Rubik Scribble';
+				font-size: 85px;
+				position: relative;
+				/* letter-spacing:0px; */
+			}
+
+			.font5 {
+				font-family: 'Rubik Puddles';
+				font-size: 95px;
+				position: relative;
+			}
+
+			.font6 {
+				font-family: 'Rubik Microbe';
+				font-size: 74px;
+				position: relative;
+			}
+
+			.font7 {
+				font-family: 'Rubik Doodle Triangles';
+				font-size: 100px;
+				position: relative;
+				margin: 20px 0;
+			}
+
+			.animate-base {
+				opacity: 1;
+				transition: opacity 0.3s ease;
+			}
+
+			@keyframes explodeBase {
+				0% {
+					transform: scale(1) rotate(0deg);
+					opacity: 1;
+				}
+
+				50% {
+					transform: scale(2) rotate(360deg) translate(var(--x), var(--y));
+					opacity: 0;
+					filter: blur(10px);
+				}
+
+				100% {
+					transform: scale(1) rotate(0deg) translate(0, 0);
+					opacity: 1;
+					filter: blur(0);
+				}
+			}
+
+			.explode-odd,
+			.explode-even {
+				animation: explodeBase 1.5s forwards ease-out;
+			}
+
+			.explode-odd {
+				animation-delay: 0.1s;
+			}
+
+			.explode-even {
+				animation-delay: 0.2s;
+			}
+
+			.animate-delay-odd {
+				animation-delay: 0.1s;
+			}
+
+			.animate-delay-even {
+				animation-delay: 0.2s;
+			}
+
+			.page2-1 .font2 span:nth-child(1) {
+				--x: -100px;
+				--y: -50px;
+			}
+
+			.page2-1 .font2 span:nth-child(2) {
+				--x: 100px;
+				--y: -70px;
+			}
+
+			.page2-1 .font2 span:nth-child(3) {
+				--x: 90px;
+				--y: 100px;
+			}
+
+			.page2-1 .font2 span:nth-child(4) {
+				--x: -80px;
+				--y: 150px;
+			}
+
+			.page2-1 .font2 span:nth-child(5) {
+				--x: 120px;
+				--y: -50px;
+			}
+
+			.page2-1 .font2 span:nth-child(6) {
+				--x: -90px;
+				--y: -100px;
+			}
+
+			.page2-1 .font2 span:nth-child(7) {
+				--x: 130px;
+				--y: 80px;
+			}
+
+			.page2-1 .font2 span:nth-child(8) {
+				--x: -60px;
+				--y: 90px;
+			}
+
+			.page2-1 .font2 span:nth-child(9) {
+				--x: 110px;
+				--y: 120px;
+			}
+
+			.page2-1 .font2 span:nth-child(10) {
+				--x: -50px;
+				--y: -60px;
+			}
+
+			.page2-1 .font2 span:nth-child(11) {
+				--x: 130px;
+				--y: -80px;
+			}
+
+			.page2-1 .font2 span:nth-child(12) {
+				--x: -40px;
+				--y: -30px;
+			}
+
+			@keyframes explode2 {
+				0% {
+					transform: scale(1) rotate(0deg);
+					opacity: 1;
+				}
+
+				50% {
+					transform: scale(2) rotate(15deg) translate(30px, -30px);
+					opacity: 0.5;
+				}
+
+				100% {
+					transform: scale(1) rotate(0deg) translate(0, 0);
+					opacity: 1;
+				}
+			}
+
+			.explode2-odd {
+				opacity: 1;
+				animation: explode2 2s forwards;
+				animation-delay: 0.1s;
+			}
+
+			.explode2-even {
+				opacity: 1;
+				animation: explode2 2s forwards;
+				animation-delay: 0.2s;
+			}
+
+			@keyframes flow {
+				0% {
+					opacity: 0;
+					transform: translateY(-20px);
+				}
+
+				50% {
+					opacity: 0.5;
+					transform: translateY(20px);
+				}
+
+				100% {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
+			.flow-odd {
+				opacity: 1;
+				animation: flow 1.5s ease-out forwards;
+				animation-delay: 0.2s;
+			}
+
+			.flow-even {
+				opacity: 1;
+				animation: flow 1.5s ease-out forwards;
+				animation-delay: 0.4s;
+			}
+
+			.span-animate-odd {
+				animation: explode 2s forwards, assemble 2s 2s forwards;
+				animation-delay: 0.1s;
+			}
+
+			.span-animate-even {
+				animation: explode 2s forwards, assemble 2s 2s forwards;
+				animation-delay: 0.2s;
+			}
+
+			@keyframes explode3 {
+				0% {
+					opacity: 1;
+					transform: scale(1) translate(0, 0);
+				}
+
+				100% {
+					opacity: 0;
+					transform: scale(3) translate(120px, 120px);
+				}
+			}
+
+			@keyframes assemble {
+				0% {
+					opacity: 0;
+					transform: scale(0) translate(0, 0);
+				}
+
+				100% {
+					opacity: 1;
+					transform: scale(1) translate(0, 0);
+				}
+			}
+
+			.span4-animate-odd {
+				animation: explode4 1s forwards, assemble2 1s 1s forwards;
+				animation-delay: 0.1s;
+			}
+
+			.span4-animate-even {
+				animation: explode4 1s forwards, assemble2 1s 1s forwards;
+				animation-delay: 0.2s;
+			}
+
+			/* 文字爆裂动画 */
+			@keyframes explode4 {
+				0% {
+					opacity: 1;
+					transform: scale(1) rotate(0deg);
+				}
+
+				100% {
+					opacity: 0;
+					transform: scale(3) rotate(720deg) translate(200px, 200px);
+				}
+			}
+
+			/* 恢复文字 */
+			@keyframes assemble2 {
+				0% {
+					opacity: 0;
+					transform: scale(0) rotate(180deg) translate(0, 0);
+				}
+
+				100% {
+					opacity: 1;
+					transform: scale(1) rotate(0deg) translate(0, 0);
+				}
+			}
+
+			@keyframes fadeInLeft {
+				from {
+					opacity: 0;
+					transform: translate3d(-100%, 0, 0);
+				}
+
+				to {
+					opacity: 1;
+					transform: translate3d(0, 0, 0);
+				}
+			}
+
+			.animate__fadeInLeft {
+				animation-name: fadeInLeft;
+			}
+
+			@keyframes fadeInRight {
+				from {
+					opacity: 0;
+					transform: translate3d(100%, 0, 0);
+				}
+
+				to {
+					opacity: 1;
+					transform: translate3d(0, 0, 0);
+				}
+			}
+
+			.animate__fadeInRight {
+				animation-name: fadeInRight;
+			}
+
+			@keyframes flipInX {
+				from {
+					transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+					animation-timing-function: ease-in;
+					opacity: 0;
+				}
+
+				40% {
+					transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+					animation-timing-function: ease-in;
+				}
+
+				60% {
+					transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+					opacity: 1;
+				}
+
+				80% {
+					transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+				}
+
+				to {
+					transform: perspective(400px);
+				}
+			}
+
+			.fullpage {
+				position: relative;
+			}
+
+			.fullpage2.active .animate__flipInX,
+			.fullpage3.active .animate__flipInX,
+			.fullpage4.active .animate__flipInX,
+			.fullpage5.active .animate__flipInX,
+			.fullpage6.active .animate__flipInX,
+			.fullpage7.active .animate__flipInX {
+				backface-visibility: visible !important;
+				animation-name: flipInX;
+			}
+
+			@keyframes zoomIn {
+				from {
+					opacity: 0;
+					transform: scale3d(0.3, 0.3, 0.3);
+				}
+
+				50% {
+					opacity: 1;
+				}
+			}
+
+			.fullpage2.active .animate__zoomIn,
+			.fullpage3.active .animate__zoomIn,
+			.fullpage4.active .animate__zoomIn,
+			.fullpage5.active .animate__zoomIn,
+			.fullpage6.active .animate__zoomIn,
+			.fullpage7.active .animate__zoomIn {
+				animation-name: zoomIn;
+				animation-delay: 0.5s;
+			}
+
+
+			@keyframes swing {
+				20% {
+					transform: rotate3d(0, 0, 1, 15deg);
+				}
+
+				40% {
+					transform: rotate3d(0, 0, 1, -10deg);
+				}
+
+				60% {
+					transform: rotate3d(0, 0, 1, 5deg);
+				}
+
+				80% {
+					transform: rotate3d(0, 0, 1, -5deg);
+				}
+
+				to {
+					transform: rotate3d(0, 0, 1, 0deg);
+				}
+			}
+
+			.fullpage2.active .animate__swing,
+			.fullpage3.active .animate__swing,
+			.fullpage4.active .animate__swing,
+			.fullpage5.active .animate__swing,
+			.fullpage6.active .animate__swing,
+			.fullpage7.active .animate__swing {
+				transform-origin: top center;
+				animation-name: swing;
+				animation-delay: 0.5s;
+			}
+
+
+			@keyframes bounce {
+
+				0%,
+				20%,
+				53%,
+				to {
+					animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+					transform: translateZ(0)
+				}
+
+				40%,
+				43% {
+					animation-timing-function: cubic-bezier(.755, .05, .855, .06);
+					transform: translate3d(0, -30px, 0) scaleY(1.1)
+				}
+
+				70% {
+					animation-timing-function: cubic-bezier(.755, .05, .855, .06);
+					transform: translate3d(0, -15px, 0) scaleY(1.05)
+				}
+
+				80% {
+					transform: translateZ(0) scaleY(.95);
+					transition-timing-function: cubic-bezier(.215, .61, .355, 1)
+				}
+
+				90% {
+					transform: translate3d(0, -4px, 0) scaleY(1.02)
+				}
+			}
+
+			.fullpage2.active .animate__bounce,
+			.fullpage3.active .animate__bounce,
+			.fullpage4.active .animate__bounce,
+			.fullpage5.active .animate__bounce,
+			.fullpage6.active .animate__bounce,
+			.fullpage7.active .animate__bounce {
+				animation-name: bounce;
+				animation-delay: 0.5s;
+			}
+
+			@keyframes wobble {
+				from {
+					transform: translate3d(0, 0, 0);
+				}
+
+				15% {
+					transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
+				}
+
+				30% {
+					transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
+				}
+
+				45% {
+					transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
+				}
+
+				60% {
+					transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
+				}
+
+				75% {
+					transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
+				}
+
+				to {
+					transform: translate3d(0, 0, 0);
+				}
+			}
+
+			.fullpage2.active .animate__wobble,
+			.fullpage3.active .animate__wobble,
+			.fullpage4.active .animate__wobble,
+			.fullpage5.active .animate__wobble,
+			.fullpage6.active .animate__wobble,
+			.fullpage7.active .animate__wobble {
+				animation-name: wobble;
+				animation-delay: 0.5s;
+			}
+
+			@keyframes fadeInDown {
+				0% {
+					opacity: 0;
+					-webkit-transform: translate3d(0, -100%, 0);
+					transform: translate3d(0, -100%, 0)
+				}
+
+				to {
+					opacity: 1;
+					-webkit-transform: translateZ(0);
+					transform: translateZ(0)
+				}
+			}
+
+			.fullpage2.active .animate__fadeInDown {
+				-webkit-animation-name: fadeInDown;
+				animation-name: fadeInDown;
+				animation-delay: 0.5s;
+			}
+
+			.letter {
+				display: inline-block;
+				position: relative;
+				opacity: 0;
+				
+				transform: translateY(30px);
+				letter-spacing: -10px;
+			}
+			.letter-7{
+				line-height: 1em;
+				letter-spacing: 0px;
+			}
+
+
+			.page3 {
+				background-color: rgba(131, 135, 192, 1);
+				height: auto;
+				color: #F6E22D;
+				font-size: 55px;
+				/* display: none; */
+				position: relative;
+				transition: opacity 0.6s ease-in-out;
+			}
+
+			.page3 img {
+				position: absolute;
+				top: 2%;
+				left: 2%;
+				margin: 0;
+				width: 100px;
+				transform: rotateY(180deg);
+				cursor: pointer;
+			}
+
+			.page4 {
+				background-color: #62629C;
+				height: auto;
+				color: #FCC8BC;
+				font-size: 64px;
+				/* display: none; */
+				position: relative;
+				transition: opacity 0.6s ease-in-out;
+			}
+
+			.page4 img {
+				position: absolute;
+				top: 2%;
+				left: 2%;
+				margin: 0;
+				width: 100px;
+				transform: rotateY(180deg);
+				cursor: pointer;
+			}
+
+			.page5 {
+				background-color: #B65B9A;
+				height: auto;
+				color: #C7D3A9;
+				font-size: 55px;
+				/* display: none; */
+				position: relative;
+				transition: opacity 0.6s ease-in-out;
+			}
+
+			.page5 img {
+				position: absolute;
+				top: 2%;
+				left: 2%;
+				margin: 0;
+				width: 100px;
+				transform: rotateY(180deg);
+				cursor: pointer;
+			}
+
+			.page6 {
+				background-color: #364B25;
+				height: auto;
+				color: #FCC8BC;
+				font-size: 55px;
+				/* display: none; */
+				position: relative;
+				transition: opacity 0.6s ease-in-out;
+			}
+
+			.page6 img {
+				position: absolute;
+				top: 2%;
+				left: 2%;
+				margin: 0;
+				width: 100px;
+				transform: rotateY(180deg);
+				cursor: pointer;
+			}
+
+			.page7 {
+				background-color: #FDCDD6;
+				height: auto;
+				color: #EB6E36;
+				font-size: 65px;
+				line-height: 1.2em;
+				/* display: none; */
+				position: relative;
+				transition: opacity 0.6s ease-in-out;
+			}
+
+			.page7 img {
+				position: absolute;
+				top: 2%;
+				left: 2%;
+				margin: 0;
+				width: 100px;
+				transform: rotateY(180deg);
+				cursor: pointer;
+			}
+
+			/* 添加页面过渡动画 */
+			.page-transition {
+				transition: opacity 0.6s ease-in-out;
+				opacity: 1;
+			}
+
+			.page-transition.fade-out {
+				opacity: 0;
+			}
+
+			.page-transition.fade-in {
+				opacity: 1;
+			}
+
+			/* 修改 page2 和 page3 的样式 */
+			.page2,
+			.page3,
+			.page4,
+			.page5,
+			.page6,
+			.page7 {
+				transition: opacity 0.6s ease-in-out;
+			}
+
+			.page3-1-bg {
+				background: linear-gradient(to bottom, #A6B4CE 10%, #8387C0);
+			}
+
+			.page4-1-bg {
+				background: linear-gradient(to bottom, #8387C0 10%, #62629C);
+			}
+
+			.page5-1-bg {
+				background: linear-gradient(to bottom, #62629C 10%, #B65B9A);
+			}
+
+			.page6-1-bg {
+				background: linear-gradient(to bottom, #B65B9A 10%, #364B25);
+			}
+
+			.page7-1-bg {
+				background: linear-gradient(to bottom, #364b25 10%, #364b25e8 30%, #364c24d1 50%, #647258f0 70%, #838e74 80%, #FDCDD6);
+			}
+
+			/* 打字机效果 */
+			.line {
+				position: relative;
+				white-space: pre;
+				overflow: hidden;
+				margin: 0;
+				opacity: 0;
+				letter-spacing: 3px;
+				transform: translateY(0px);
+				display: inline-block;
+			}
+
+			.page3-line1 {
+				animation: page3-line1 5s steps(20, end);
+				width: 0;
+				animation-fill-mode: forwards;
+				opacity: 1;
+			}
+
+			.page3-line2 {
+				animation: page3-line2 4s steps(21, end);
+				animation-delay: 3s;
+				width: 0;
+				animation-fill-mode: forwards;
+				opacity: 1;
+			}
+
+
+			@keyframes page3-line1 {
+				from {
+					width: 0
+				}
+
+				to {
+					width: 20ch
+				}
+			}
+
+			@keyframes page3-line2 {
+				from {
+					width: 0
+				}
+
+				to {
+					width: 21ch
+				}
+			}
+
+			/* 渐隐出现 勾勒轮廓 */
+			.outline {
+				color: transparent;
+				-webkit-text-stroke: 1px #EB6E36;
+				position: relative;
+				opacity: 0;
+				animation: strokeEffect 2.5s ease forwards;
+				letter-spacing: 0px;
+			}
+
+			.outline::before {
+				content: attr(data-text);
+				position: absolute;
+				color: transparent;
+				-webkit-text-stroke: 2px #EB6E36;
+				border-right: 3px solid #EB6E36;
+				overflow: hidden;
+				animation: typing 2.5s ease forwards;
+				white-space: nowrap;
+			}
+
+			@keyframes typing {
+				0% {
+					width: 0;
+					border-right-color: #EB6E36;
+				}
+
+				99% {
+					border-right-color: #EB6E36;
+				}
+
+				100% {
+					width: 100%;
+					border-right-color: transparent;
+				}
+			}
+
+			@keyframes strokeEffect {
+				0% {
+					opacity: 0;
+					-webkit-text-stroke: 0px;
+				}
+
+				50% {
+					opacity: 0.5;
+					-webkit-text-stroke: 2px #e28f69;
+				}
+
+				100% {
+					opacity: 1;
+					-webkit-text-stroke: 2px #e28f69;
+				}
+			}
+
+			/* 为每个文字组设置不同的动画延迟 */
+			.text-group:nth-child(1) span {
+				animation-delay: calc(var(--i, 0) * 0.2s);
+			}
+
+			/* 	.text-group:nth-child(2) p { animation-delay: calc((var(--i, 0) + 5) * 0.2s); }
+		.text-group:nth-child(3) p { animation-delay: calc((var(--i, 0) + 10) * 0.2s); }
+		.text-group:nth-child(4) p { animation-delay: calc((var(--i, 0) + 15) * 0.2s); } */
+
+			/* 调整动画延迟 */
+			.text-group:nth-child(1) .outline {
+				--i: 1;
+			}
+
+			/* .text-group:nth-child(2) .outline { --i: 2; }
+		.text-group:nth-child(3) .outline { --i: 3; }
+		.text-group:nth-child(4) .outline { --i: 4; } */
+
+			.outline,
+			.outline::before {
+				animation-delay: calc(var(--i, 0) * 0.8s);
+			}
+
+
+
+			.font-oi {
+				font-family: 'oi';
+			}
+
+			.font-size-55px {
+				font-size: 55px;
+			}
+
+			.font-size-115px {
+				font-size: 115px;
+			}
+
+			.font-size-135px {
+				font-size: 135px;
+			}
+
+			.font-size-128px {
+				font-size: 128px;
+			}
+
+			.font-size-75px {
+				font-size: 75px;
+			}
+
+			.display-inline-block {
+				display: inline-block;
+			}
+
+			.letter-spacing-0px {
+				letter-spacing: 0px;
+			}
+
+			/* 媒体 */
+			/* 当屏幕宽度至少为600px时应用这些样式 */
+			@media (min-width: 600px) {
+				.letter-spacing-0px {
+					letter-spacing: 0px;
+				}
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="page1" id="page1">
+            <div class="page1-1">
+                <!-- <button onclick="turnPage()">awiejfilawefljkwfawefawefawefawefawefawefawef</button> -->
+                <p class="animate__animated animate__fadeInUp">Don't Let </p>
+                <p class="animate__animated animate__fadeInUp animate__delay-1s">anyone </p>
+                <p class="animate__animated animate__fadeInUp animate__delay-2s">rush You </p>
+                <p class="animate__animated animate__fadeInUp animate__delay-3s">With their </p>
+                <p class="animate__animated animate__fadeInUp animate__delay-4s">timelines </p>
+            </div>
+            <div class="page1-2 hidden">
+                <p class="animate__animated animate__fadeInLeft">Everything in </p>
+                <p class="animate__animated animate__fadeInRight animate__delay-1s">life happens</p>
+                <p class="animate__animated animate__fadeInLeft animate__delay-2s">according to our </p>
+                <p class="animate__animated animate__fadeInRight animate__delay-3s">time, our clock.</p>
+                <div class="btn animate__animated animate__fadeInUp animate__delay-4s" onclick="turnPage()">Turn the
+                    Page</div>
+            </div>
+        </div>
+
+       <div class="page2" id="page2">
+            <div class="fullpage fullpage2 page2-1">
+                <img class="btn1" src="ARROW.png" alt="arrow" onclick="returnPage()">
+                <p class="animate__animated animate__zoomIn">In two years,</p>
+                <p class="animate__animated animate__zoomIn">you'll finish</p>
+                <p class="font2">
+                    <span class="letter">y</span>
+                    <span class="letter">o</span>
+                    <span class="letter">u</span>
+                    <span class="letter">r&nbsp;&nbsp;&nbsp;</span>
+                    <span class="letter">A</span>
+                    <span class="letter">-</span>
+                    <span class="letter">l</span>
+                    <span class="letter">e</span>
+                    <span class="letter">v</span>
+                    <span class="letter">e</span>
+                    <span class="letter">l</span>
+                    <span class="letter">s</span>
+                </p>
+            </div>
+            <div class="fullpage fullpage2 page2-2">
+                <img class="btn1" src="ARROW.png" alt="arrow" onclick="returnPage()">
+                <p class="animate__animated animate__zoomIn">In three,you'll </p>
+                <p class="animate__animated animate__zoomIn">study at </p>
+               
+                <p class="font2" style="font-size: 80px;">
+                    <span class="letter">y</span>
+                    <span class="letter">o</span>
+                    <span class="letter">u</span>
+                    <span class="letter">r&nbsp;&nbsp;&nbsp;</span>
+                    <span class="letter">c</span>
+                    <span class="letter">h</span>
+                    <span class="letter">o</span>
+                    <span class="letter">s</span>
+                    <span class="letter">e</span>
+                    <span class="letter">n</span><br />
+                    <span class="letter">n</span>
+                    <span class="letter">i</span>
+                    <span class="letter">v</span>
+                    <span class="letter">e</span>
+                    <span class="letter">r</span>
+                    <span class="letter">s</span>
+                    <span class="letter">i</span>
+                    <span class="letter">t</span>
+                    <span class="letter">y</span>
+                   
+                </p>
+            </div>
+            <div class="fullpage fullpage2 page2-3">
+                <img class="btn1" src="ARROW.png" alt="arrow" onclick="returnPage()">
+                <p class="animate__animated animate__zoomIn">In five,you'll </p>
+                <p class="animate__animated animate__zoomIn">start your carcer,</p>
+                <p class="animate__animated animate__zoomIn">some working at</p>
+             
+                <p class="font2" style="font-size: 90px;">
+                    <span class="letter">t</span>
+                    <span class="letter">o</span>
+                    <span class="letter">p&nbsp;&nbsp;&nbsp;</span>
+                    <span class="letter">i</span>
+                    <span class="letter">n</span>
+                    <span class="letter">s</span>
+                    <span class="letter">t</span>
+                    <span class="letter">i</span>
+                    <span class="letter">t</span>
+                    <span class="letter">u</span>
+                    <span class="letter">t</span>
+                    <span class="letter">i</span>
+                    <span class="letter">o</span>
+                    <span class="letter">n</span>
+                    <span class="letter">s</span><br />
+                    <span class="letter">w</span>
+                    <span class="letter">o</span>
+                    <span class="letter">r</span>
+                    <span class="letter">l</span>
+                    <span class="letter">d</span>
+                    <span class="letter">w</span>
+                    <span class="letter">i</span>
+                    <span class="letter">d</span>
+                    <span class="letter">e</span>
+                    <span class="letter">.</span>
+                </p>
+            </div>
+            <div class="fullpage fullpage2 page2-4">
+                <img class="btn1" src="ARROW.png" alt="arrow" onclick="returnPage()">
+                <p class="animate__animated animate__zoomIn">Then comes </p>
+                <p class="font2" style="font-size: 100px;">
+                    <span class="letter">m</span>
+                    <span class="letter">a</span>
+                    <span class="letter">r</span>
+                    <span class="letter">r</span>
+                    <span class="letter">i</span>
+                    <span class="letter">a</span>
+                    <span class="letter">g</span>
+                    <span class="letter">e</span><br />
+                    <span class="letter">b</span>
+                    <span class="letter">u</span>
+                    <span class="letter">y</span>
+                    <span class="letter">i</span>
+                    <span class="letter">n</span>
+                    <span class="letter">g&nbsp;&nbsp;&nbsp;</span>
+                    <span class="letter">a&nbsp;&nbsp;&nbsp;</span>
+                    <span class="letter">h</span>
+                    <span class="letter">o</span>
+                    <span class="letter">u</span>
+                    <span class="letter">s</span>
+                    <span class="letter">e</span>
+                    <span class="letter">.</span>
+                </p>
+            </div>
+            <div class="fullpage fullpage2 page2-5">
+                <img class="btn1" src="ARROW.png" alt="arrow" onclick="returnPage()">
+                <p class="animate__animated animate__zoomIn"> In ten years, </p>
+                <p class="animate__animated animate__zoomIn">your life will be set.</p>
+               
+                <p class="font2" style="font-size: 105px;">
+                    <span class="letter">B</span>
+                    <span class="letter">y&nbsp;&nbsp;&nbsp;</span>
+                    <span class="letter">t</span>
+                    <span class="letter">h</span>
+                    <span class="letter">i</span>
+                    <span class="letter">r</span>
+                    <span class="letter">t</span>
+                    <span class="letter">y&nbsp;&nbsp;&nbsp;,</span>
+                    <span class="letter">y</span>
+                    <span class="letter">o</span>
+                    <span class="letter">u</span>
+                    <span class="letter">r</span><br />
+                    <span class="letter">p</span>
+                    <span class="letter">a</span>
+                    <span class="letter">t</span>
+                    <span class="letter">h&nbsp;&nbsp;&nbsp;</span>
+                    <span class="letter">w</span>
+                    <span class="letter">i</span>
+                    <span class="letter">l</span>
+                    <span class="letter">l&nbsp;&nbsp;&nbsp;</span>
+                    <span class="letter">b</span>
+                    <span class="letter">e</span><br />
+                    <span class="letter">d</span>
+                    <span class="letter">e</span>
+                    <span class="letter">c</span>
+                    <span class="letter">i</span>
+                    <span class="letter">d</span>
+                    <span class="letter">e</span>
+                    <span class="letter">d</span>
+                    <span class="letter">.</span>
+                </p>
+            </div>
+            <div class="fullpage fullpage2 page2-6">
+                <img class="btn1" src="ARROW.png" alt="arrow" onclick="returnPage()">
+                <p class="animate__animated animate__fadeInDown">But what if</p>
+                <p class="animate__animated animate__fadeInDown"> that timwline </p>
+                
+                <p class="font2" style="font-size: 110px; ">
+                    <span class="letter">d</span>
+                    <span class="letter">o</span>
+                    <span class="letter">e</span>
+                    <span class="letter">s</span>
+                    <span class="letter">n'</span>
+                    <span class="letter">t&nbsp;&nbsp;&nbsp;</span>
+                    <span class="letter">w</span>
+                    <span class="letter">o</span>
+                    <span class="letter">r</span>
+                    <span class="letter">k</span><br />
+                    <span class="letter">f</span>
+                    <span class="letter">o</span>
+                    <span class="letter">r&nbsp;&nbsp;&nbsp;</span>
+                    <span class="letter">y</span>
+                    <span class="letter">o</span>
+                    <span class="letter">u</span>
+                    <span class="letter">?</span>
+                </p>
+            </div>
+        </div>
+
+        
+
+        <div class="page3" id="page3">
+            <div class="fullpage fullpage3 page3-1 page3-1-bg">
+                <img class="btn1" src="ARROW.png" alt="arrow" onclick="returnPage()">
+                <p class="animate__animated animate__flipInX">I know people</p>
+                <p class="animate__animated animate__flipInX animate__delay-1s">who never went</p>
+                <p class="animate__animated animate__flipInX animate__delay-2s">to university</p>
+                <p class="font3">
+                    <span class="letter line ">but found what</span><br />
+                    <span class="letter line ">they love at 18 .</span>
+                </p>
+            </div>
+            <div class="fullpage fullpage3 page3-2">
+                <img class="btn1" src="ARROW.png" alt="arrow" onclick="returnPage()">
+                <p class="animate__animated animate__flipInX">I know people</p>
+                <p class="animate__animated animate__flipInX animate__delay-1s">who found a job</p>
+                <p class="animate__animated animate__flipInX animate__delay-2s">straight out of</p>
+                <p class="animate__animated animate__flipInX animate__delay-1s">college making</p>
+                <p class="animate__animated animate__flipInX animate__delay-2s">decent moncy,</p>
+               
+                <p class="font3">
+                    <span class="letter line ">but hate what</span><br />
+                    <span class="letter line ">they do .</span>
+                </p>
+            </div>
+            <div class="fullpage fullpage3 page3-3">
+                <img class="btn1" src="ARROW.png" alt="arrow" onclick="returnPage()">
+                <p class="animate__animated animate__flipInX animate__delay-1s">I know people</p>
+                <p class="animate__animated animate__flipInX animate__delay-1s">who took gap</p>
+                <p class="animate__animated animate__flipInX animate__delay-1s">years and found</p>
+                <p class="animate__animated animate__flipInX animate__delay-1s">their purpose.</p>
+               
+                <p class="font3">
+                    <span class="letter line ">and found their</span><br />
+                    <span class="letter line ">purpose</span>
+                </p>
+            </div>
+            <div class="fullpage fullpage3 page3-4">
+                <img class="btn1" src="ARROW.png" alt="arrow" onclick="returnPage()">
+                <p class="animate__animated animate__bounce">I know people who</p>
+                <p class="animate__animated animate__bounce">were so sure about</p>
+                <p class="animate__animated animate__bounce">what they were</p>
+                <p class="animate__animated animate__bounce">going to do at 16</p>
+               
+                <p class="font3">
+                    <span class="letter line ">and changed their</span><br />
+                    <span class="letter line ">minds at 26 .</span>
+                </p>
+            </div>
+        </div>
+
+
+
+       <div class="page4" id="page4">
+            <div class="fullpage fullpage4 page4-1 page4-1-bg">
+                <img class="btn1" src="FCC8BC.png" alt="arrow" onclick="returnPage()">
+                <p class="animate__animated animate__zoomIn">So my point is</p>
+                <p class="font4 " style="font-size:96px;">
+                    <span class="letter letter-spacing-0px">everything in</span><br/>
+                    <span class="letter letter-spacing-0px">life happens</span><br/>
+                    <span class="letter letter-spacing-0px">according to our</span><br/>
+                    <span class="letter letter-spacing-0px">time, our clock.</span>
+                </p>
+            </div>
+            <div class="fullpage fullpage4 page4-2" ">
+                <img class="btn1" src="FCC8BC.png" alt="arrow" onclick="returnPage()">
+                <p class="animate__animated animate__zoomIn">You may look at</p>
+                <p class="animate__animated animate__zoomIn">some of your</p>
+                <p class="animate__animated animate__zoomIn">friends and think</p>
+                <p class="animate__animated animate__zoomIn" style="transform: translateY(-10px);">that they are
+                    <span class="font4">
+                        <span class="letter letter-spacing-0px">ahead</span>
+                    </span>
+               </p>
+                
+                <p class="animate__animated animate__zoomIn">of you or maybe</p>
+                <p class="animate__animated animate__zoomIn">some of them you</p>
+                <p class="animate__animated animate__zoomIn" style="transform: translateY(-10px);">feel are
+                    <span class="font4 " >
+                        <span class="letter letter-spacing-0px">behind.</span>
+                    </span>
+                </p>
+               
+            </div>
+            <div class="fullpage fullpage4 page4-3">
+                <img class="btn1" src="FCC8BC.png" alt="arrow" onclick="returnPage()">
+                <p class="animate__animated animate__zoomIn">But everything</p>
+
+                <p class="font4">
+                    <span class="letter letter-spacing-0px" >happens at their</span><br/>
+					<span class="letter letter-spacing-0px" >own pace.</span>
+                </p>
+            </div>
+            <div class="fullpage fullpage4 page4-4">
+                <img class="btn1" src="FCC8BC.png" alt="arrow" onclick="returnPage()">
+                <p class="animate__animated animate__flipInX animate__delay-1s">They have</p>
+                <p class="font4">
+                     <span class="letter letter-spacing-0px">their own time and</span><br/>
+					 <span class="letter letter-spacing-0px">clock</span>
+                    <span class="animate__animated animate__flipInX  font-oi font-size-55px display-inline-block">and so do</span>
+                </p>
+
+                <p class="animate__animated animate__flipInX animate__delay-1s">you. Be patient.</p>
+
+            </div>
+        </div>
+
+
+			<div class="page5" id="page5">
+				<div class="fullpage fullpage5 page5-1 page5-1-bg">
+					<img class="btn1" src="C7D3A9.png" alt="arrow" onclick="returnPage()">
+					<p class="animate__animated animate__flipInX">Getting your</p>
+					<p class="animate__animated animate__flipInX animate__delay-1s">degree after 25</p>
+					<p class="animate__animated animate__flipInX ">is still an</p>
+					<p class="font5" style="transform: translateY(-10px);">
+                    <span class="letter">a</span>
+                    <span class="letter">c</span>
+                    <span class="letter">h</span>
+                    <span class="letter">i</span>
+                    <span class="letter">e</span>
+                    <span class="letter">v</span>
+                    <span class="letter">e</span>
+                    <span class="letter">m</span>
+                    <span class="letter">e</span>
+                    <span class="letter">n</span>
+                    <span class="letter">a</span>
+                    <span class="letter">t.</span><br />
+                    
+                </p>
+				</div>
+				<div class="fullpage fullpage5 page5-2">
+					<img class="btn1" src="C7D3A9.png" alt="arrow" onclick="returnPage()">
+					<p class="animate__animated animate__flipInX ">Not being</p>
+					<p class="animate__animated animate__flipInX animate__delay-2s">married at 30</p>
+					<p class="animate__animated animate__flipInX animate__delay-1s">but still happy</p>
+					<p class="animate__animated animate__flipInX animate__delay-2s">is</p>
+
+					<p class="font5" style="transform: translateY(-10px);">
+						<span class="letter">b</span>
+						<span class="letter">e</span>
+						<span class="letter">a</span>
+						<span class="letter">u</span>
+						<span class="letter">t</span>
+						<span class="letter">i</span>
+						<span class="letter">f</span>
+						<span class="letter">u</span>
+						<span class="letter">l.</span>
+						
+					</p>
+				</div>
+				<div class="fullpage fullpage5 page5-3">
+					<img class="btn1" src="C7D3A9.png" alt="arrow" onclick="returnPage()">
+					<p class="animate__animated animate__flipInX animate__delay-1s">Starting a</p>
+					<p class="animate__animated animate__flipInX ">family after 35</p>
+					<p class="animate__animated animate__flipInX animate__delay-1s">is still</p>
+
+					<p class="font5" style="transform: translateY(-10px);">
+						<span class="letter">p</span>
+						<span class="letter">o</span>
+						<span class="letter">s</span>
+						<span class="letter">s</span>
+						<span class="letter">i</span>
+						<span class="letter">b</span>
+						<span class="letter">l</span>
+						<span class="letter">e.</span>
+						
+					</p>
+				</div>
+				<div class="fullpage fullpage5 page5-4">
+					<img class="btn1" src="C7D3A9.png" alt="arrow" onclick="returnPage()">
+					<p class="animate__animated animate__flipInX ">And buying a</p>
+					<p class="animate__animated animate__flipInX animate__delay-1s">house after 40</p>
+					<p class="animate__animated animate__flipInX animate__delay-1s">is still</p>
+
+					<p class="font5" style="transform: translateY(-10px);">
+						<span class="letter">g</span>
+						<span class="letter">r</span>
+						<span class="letter">e</span>
+						<span class="letter">a</span>
+						<span class="letter">t.</span>
+						
+					</p>
+				</div>
+			</div>
+
+			<div class="page6" id="page6">
+				<div class="fullpage fullpage6 page6-1 page6-1-bg">
+					<img class="btn1" src="FCC8BC.png" alt="arrow" onclick="returnPage()">
+					<p class="animate__animated animate__bounce">Don't let</p>
+					<p class="animate__animated animate__bounce">anyone rush</p>
+					<p class="animate__animated animate__bounce">you with their</p>
+					<p class="font6" style="font-size: 120px;transform: translateY(-8px);">
+						<span class="letter line">TIMELIMES</span>
+					</p>
+				</div>
+				<div class="fullpage fullpage6 page6-2">
+					<img class="btn1" src="FCC8BC.png" alt="arrow" onclick="returnPage()">
+					<p class="animate__animated animate__swing">Because as</p>
+					<p class="animate__animated animate__swing">Einstein said</p>
+
+				</div>
+				<div class="fullpage fullpage6 page6-3">
+					<img class="btn1" src="FCC8BC.png" alt="arrow" onclick="returnPage()">
+					<p class="animate__animated animate__bounce">Not everything</p>
+					<p class="animate__animated animate__bounce">that counts can be</p>
+					<p class="font6 " style="font-size: 150px; transform: translateY(-13px);">
+						<span class="letter line">COUNTED</span>
+					</p>
+				</div>
+				<div class="fullpage fullpage6 page6-4">
+					<img class="btn1" src="FCC8BC.png" alt="arrow" onclick="returnPage()">
+					<p class="animate__animated animate__bounce">and not</p>
+					<p class="animate__animated animate__bounce">everything that's</p>
+					<p class="animate__animated animate__bounce">counted truly</p>
+
+					<p class="font6" style="font-size: 150px; transform: translateY(-13px);">
+						<span class="letter line">COUNTS</span>
+
+					</p>
+				</div>
+			</div>
+
+			<div class="page7" id="page7">
+				<div class="fullpage fullpage7 page7-1 page7-1-bg">
+					<img class="btn1" src="EB6E36.png" alt="arrow" onclick="returnPage()">
+					<p class="animate__animated animate__zoomIn">And this is</p>
+					<p class="animate__animated animate__zoomIn">the most</p>
+
+					<p class="font7 " style="font-size: 130px; ">
+						<span class="letter letter-7">IMPORTANT</span><br/>
+						<span class="letter letter-7">THING.</span>
+					</p>
+				</div>
+				<div class="fullpage fullpage7 page7-2">
+					<img class="btn1" src="EB6E36.png" alt="arrow" onclick="returnPage()">
+					<p class="animate__animated animate__zoomIn">I want you to be</p>
+					<p class="animate__animated animate__zoomIn">able to create</p>
+
+					<p class="font7" style="letter-spacing:0px; font-size: 120px;">
+						<span class="letter letter-7">MEANINGFUL</span><br/>
+						<span class="letter letter-7">PURPOSEFUL</span><br/>
+						<span class="letter letter-7">FULFILLING</span>
+						
+					</p>
+					<p class="animate__animated animate__zoomIn">lives for</p>
+					<p class="animate__animated animate__zoomIn">yourseives</p>
+				</div>
+				<div class="fullpage fullpage7 page7-3">
+					<img class="btn1" src="EB6E36.png" alt="arrow" onclick="returnPage()">
+					<p class="animate__animated animate__zoomIn">And learn how to</p>
+					<p class="animate__animated animate__zoomIn">use that to make an</p>
+
+					<p class="font7" style="font-size: 125px; ">
+						<span class="letter letter-7">IMPACT AND A</span><br/>
+						<span class="letter letter-7">DIFFERENCE.</span>
+
+					</p>
+				</div>
+				<div class="fullpage fullpage7 page7-4">
+					<img class="btn1" src="EB6E36.png" alt="arrow" onclick="returnPage()">
+					<p class="animate__animated animate__swing">That will be</p>
+
+					<p class="font7" style="font-size: 125px; " >
+						<span class="letter letter-7">TRUE SUCCESS</span>
+					</p>
+				</div>
+			</div>
+
+
+		</div>
+		<script>
+			const config = {
+				delays: {
+					animation: {
+						odd: 0.1,
+						even: 0.2,
+						transition: 1000,
+						page_switch: 3000
+					}
+				},
+				pages: {
+					page2: {
+						sections: 6,
+						pairs: {
+							1: ['flow-odd', 'flow-even'],
+							2: ['explode2-odd', 'explode2-even'],
+							3: ['flow-odd', 'flow-even'],
+							4: ['span-animate-odd', 'span-animate-even'],
+							5: ['span4-animate-odd', 'span4-animate-even'],
+							6: ['explode-odd', 'explode-even']
+						}
+					},
+					page3: {
+						sections: 4,
+						pairs: {
+							1: ['page3-line1', 'page3-line2'],
+							2: ['page3-line1', 'page3-line2'],
+							3: ['page3-line1', 'page3-line2'],
+							4: ['page3-line1', 'page3-line2']
+
+						}
+					},
+					page4: {
+						sections: 4,
+						pairs: {
+							1: ['explode-odd', 'explode-even'],
+							2: ['span-animate-odd', 'span-animate-even'],
+							3: ['explode-odd', 'explode-even'],
+							4: ['explode-odd', 'explode-even']
+						}
+					},
+					page5: {
+						sections: 4,
+						pairs: {
+							1: ['flow-odd', 'flow-even'],
+							2: ['flow-odd', 'flow-even'],
+							3: ['flow-odd', 'flow-even'],
+							4: ['flow-odd', 'flow-even']
+						}
+					},
+					page6: {
+						sections: 4,
+						pairs: {
+							1: ['page3-line1', 'page3-line2'],
+							2: ['page3-line1', 'page3-line2'],
+							3: ['page3-line1', 'page3-line2'],
+							4: ['page3-line1', 'page3-line2']
+						}
+					},
+					page7: {
+						sections: 4,
+						pairs: {
+							1: ['flow-odd', 'flow-even'],
+							2: ['flow-odd', 'flow-even'],
+							3: ['flow-odd', 'flow-even'],
+							4: ['flow-odd', 'flow-even']
+						}
+					}
+				}
+			};
+
+			class DOMManager {
+				static getElements() {
+					return {
+						pages: {
+							page1: document.getElementById('page1'),
+							page2: document.getElementById('page2'),
+							page3: document.getElementById('page3'),
+							page4: document.getElementById('page4'),
+							page5: document.getElementById('page5'),
+							page6: document.getElementById('page6'),
+							page7: document.getElementById('page7')
+						},
+						page1Content: document.querySelector('.page1-1'),
+						page1_2: document.querySelector('.page1-2'),
+						lastText: document.querySelector('.page1-1 .animate__delay-4s'),
+						sections: document.querySelectorAll('.fullpage')
+					};
+				}
+
+				static togglePageDisplay(show, hide) {
+					show.style.display = 'block';
+					show.style.opacity = '0';
+					show.style.opacity = '1';
+					hide.style.opacity = '0';
+
+					setTimeout(() => {
+						hide.style.display = 'none';
+						hide.style.opacity = '1';
+					}, 600);
+
+				}
+			}
+
+			class AnimationController {
+				constructor() {
+					// 获取所有 fullpage sections
+					this.sections = DOMManager.getElements().sections;
+					this.currentIndex = 0;
+					this.isTransitioning = false;
+					this.currentPage = 'page2';
+					this.bindLetterAnimations();
+				}
+
+				bindLetterAnimations() {
+					Object.entries(config.pages).forEach(([pageId, pageConfig]) => {
+						for (let i = 1; i <= pageConfig.sections; i++) {
+							const animatedElements = document.querySelectorAll(
+							`.${pageId}-${i} p.animate__animated`);
+							const lastElement = animatedElements[animatedElements.length - 1];
+
+							if (lastElement) {
+								lastElement.addEventListener('animationend', () => {
+									this.handleLetterAnimation(pageId, i, true);
+								});
+							}
+						}
+					});
+				}
+
+				handleLetterAnimation(pageId, sectionIndex, isAdd = true) {
+					const pageConfig = config.pages[pageId];
+					if (!pageConfig?.pairs[sectionIndex]) return;
+
+					const letters = document.querySelectorAll(`.${pageId}-${sectionIndex} .letter`);
+					letters.forEach((letter, index) => {
+						const animationPair = pageConfig.pairs[sectionIndex];
+						const className = index % 2 === 0 ? animationPair[0] : animationPair[1];
+						if (isAdd) {
+							letter.classList.add(className);
+						} else {
+							letter.classList.remove(className);
+						}
+					});
+				}
+
+				clearOtherAnimations() {
+					Object.entries(config.pages).forEach(([pageId, pageConfig]) => {
+						for (let i = 1; i <= pageConfig.sections; i++) {
+							setTimeout(() => this.handleLetterAnimation(pageId, i, false), 250);
+						}
+					});
+				}
+
+				getPageStartIndex(pageId) {
+					let startIndex = 0;
+					const pageKeys = Object.keys(config.pages);
+					const pageIndex = pageKeys.indexOf(pageId);
+
+					for (let i = 0; i < pageIndex; i++) {
+						startIndex += config.pages[pageKeys[i]].sections;
+					}
+					return startIndex;
+				}
+
+				scrollToSection(index) {
+					// 边界检查
+					if (this.isTransitioning || index < 0 || index >= this.sections.length) return;
+
+					this.isTransitioning = true;
+
+					// 直接处理滚动
+					this.sections[this.currentIndex].classList.remove('active');
+					this.sections[index].classList.add('active');
+					this.sections[index].scrollIntoView({
+						behavior: 'smooth'
+					});
+
+					// 更新页面状态
+					const pageKeys = Object.keys(config.pages);
+					for (let i = 0; i < pageKeys.length; i++) {
+						const pageConfig = config.pages[pageKeys[i]];
+						const startIndex = this.getPageStartIndex(pageKeys[i]);
+						const endIndex = startIndex + pageConfig.sections - 1;
+
+						if (index >= startIndex && index <= endIndex) {
+							this.currentPage = pageKeys[i];
+							break;
+						}
+					}
+
+					this.currentIndex = index;
+					this.clearOtherAnimations();
+
+					setTimeout(() => {
+						this.isTransitioning = false;
+					}, config.delays.animation.transition);
+				}
+			}
+
+			// 页面控制器类 - 负责管理页面切换和事件绑定
+			class PageController {
+				constructor() {
+					// 初始化DOM元素引用
+					this.elements = DOMManager.getElements();
+					// 创建动画控制器实例
+					this.animationController = new AnimationController();
+					// 绑定事件监听器
+					this.bindEvents();
+					// 初始化第一个页面的动画
+					this.initializeFirstPage();
+				}
+
+				// 绑定所有事件监听器
+				bindEvents() {
+					this.bindKeyboardNavigation();
+					this.bindWheelNavigation();
+				}
+
+				// 绑定键盘导航事件
+				bindKeyboardNavigation() {
+					document.addEventListener('keydown', (e) => {
+						if (e.key === 'ArrowDown' && this.animationController.currentIndex < this.elements.sections
+							.length - 1) {
+							this.animationController.scrollToSection(this.animationController.currentIndex + 1);
+						} else if (e.key === 'ArrowUp' && this.animationController.currentIndex > 0) {
+							this.animationController.scrollToSection(this.animationController.currentIndex - 1);
+						}
+					});
+				}
+
+				// 绑定鼠标滚轮导航事件
+				bindWheelNavigation() {
+					document.addEventListener('wheel', (e) => {
+						if (e.deltaY > 0 && this.animationController.currentIndex < this.elements.sections.length -
+							1) {
+							this.animationController.scrollToSection(this.animationController.currentIndex + 1);
+						} else if (e.deltaY < 0 && this.animationController.currentIndex > 0) {
+							this.animationController.scrollToSection(this.animationController.currentIndex - 1);
+						}
+					});
+				}
+
+				//第一个模块-- 3秒后自动跳转
+				initializeFirstPage() {
+					this.elements.lastText.addEventListener('animationend', () => {
+						setTimeout(() => {
+							this.elements.page1Content.classList.add('hidden');
+							this.elements.page1_2.classList.remove('hidden');
+							this.elements.page1_2.classList.add('visible');
+						}, config.delays.animation.page_switch); //config.ANIMATION_DELAY.PAGE_SWITCH  3000
+					});
+				}
+				// 第二个模块--点击按钮到下一个模块
+				turnPage() {
+					DOMManager.togglePageDisplay(this.elements.pages.page2, this.elements.pages.page1);
+
+					// 重置动画控制器的状态
+					this.animationController.currentIndex = 0;
+
+					// 添加active类以触发动画
+					this.elements.sections[0].classList.add('active');
+				}
+				// 第三个模块，点击图片返回首页
+				returnPage() {
+					DOMManager.togglePageDisplay(this.elements.pages.page1, this.elements.pages[this.animationController
+						.currentPage]);
+					this.elements.page1Content.classList.remove('hidden', 'visible');
+					this.elements.page1_2.classList.remove('visible');
+					this.elements.page1_2.classList.add('hidden');
+				}
+			}
+
+			// 初始化
+			const pageController = new PageController();
+
+			// 暴露给HTML的方法 --- 在html中直接使用
+			function turnPage() {
+				pageController.turnPage();
+			}
+
+			function returnPage() {
+				window.location.reload();
+			}
+		</script>
+	</body>
+
+</html>
